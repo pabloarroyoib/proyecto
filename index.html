@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de inflación histórica de Argentina</title>
+    <link rel="stylesheet" href="stylesprueba.css">
+    <script src="inflation-calculator.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <ul>
+                <li class="navbar__item"><a href="#" class="navbar__link">Inicio</a></li>
+                <li class="navbar__item"><a href="#" class="navbar__link">Indicadores</a></li>
+                <li class="navbar__item"><a href="#" class="navbar__link">Acerca de</a></li>
+                <li class="navbar__item"><a href="#" class="navbar__link">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="container__section">
+            <h1 class="section__title title--principal">Calculadora de inflación histórica de Argentina</h1>
+            <p class="section__description">
+                Los precios históricos pueden ser ajustados a los precios actuales utilizando datos de índices de inflación históricos. Utiliza la calculadora a continuación para convertir precios entre cualquier mes desde enero de 1992 (cuando fue introducido el Peso) y el mes presente.
+            </p>
+            <h2 class="section__title">Uso</h2>
+            <ol class="section__list">
+                <li>Ingresar un valor inicial.</li>
+                <li>Ingresar fecha inicial. El cálculo del mes inicial es al primer día de ese mes.</li>
+                <li>Ingresar fecha final. El cálculo del mes final es al último día de ese mes.</li>
+            </ol>
+            <form class="section__form">
+                <div class="form__line">
+                    <label class="form__addon">Selecciona el parámetro:</label>
+                    <select class="form__select select--parameter">
+                        <option>Inflación(IPC)</option>
+                        <option>Dolar oficial</option>
+                        <option>Dolar blue</option>
+                    </select>
+                </div>
+                <div class="form__line">
+                    <div class="form__group">
+                        <span class="form__addon">$</span>
+                        <input type="number" id="startAmount" class="form__input" step="0.01" min="0">
+                    </div>
+                    <div class="form__group">
+                        <span class="form__addon">en</span>
+                        <select id="startMonth" class="form__select">
+                        </select>
+                        <span class="form__addon">de</span>
+                        <select id="startYear" class="form__select">
+                            <option value="1992">1992</option>
+                            <option value="1993">1993</option>
+                            <option value="1994">1994</option>
+                            <option value="1995">1995</option>
+                            <option value="1996">1996</option>
+                            <option value="1997">1997</option>
+                            <option value="1998">1998</option>
+                            <option value="1999">1999</option>
+                            <option value="2000">2000</option>
+                            <option value="2001">2001</option>
+                            <option value="2002">2002</option>
+                            <option value="2003">2003</option>
+                            <option value="2004">2004</option>
+                            <option value="2005">2005</option>
+                            <option value="2006">2006</option>
+                            <option value="2007">2007</option>
+                            <option value="2008">2008</option>
+                            <option value="2009">2009</option>
+                            <option value="2010">2010</option>
+                            <option value="2011">2011</option>
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form__line">
+                    <span class="form__addon">Equivalen a</span>
+                </div>
+                <div class="form__line">
+                    <div class="form__group">
+                        <span class="form__addon">$</span>
+                        <input type="number" id="endAmount" class="form__input" readonly>
+                    </div>
+                    <div class="form__group">
+                        <span class="form__addon">en</span>
+                        <select id="endMonth" class="form__select">
+                        </select>
+                        <span class="form__addon">de</span>
+                        <select id="endYear" class="form__select">
+                            <option value="1992">1992</option>
+                            <option value="1993">1993</option>
+                            <option value="1994">1994</option>
+                            <option value="1995">1995</option>
+                            <option value="1996">1996</option>
+                            <option value="1997">1997</option>
+                            <option value="1998">1998</option>
+                            <option value="1999">1999</option>
+                            <option value="2000">2000</option>
+                            <option value="2001">2001</option>
+                            <option value="2002">2002</option>
+                            <option value="2003">2003</option>
+                            <option value="2004">2004</option>
+                            <option value="2005">2005</option>
+                            <option value="2006">2006</option>
+                            <option value="2007">2007</option>
+                            <option value="2008">2008</option>
+                            <option value="2009">2009</option>
+                            <option value="2010">2010</option>
+                            <option value="2011">2011</option>
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form__line">
+                    <span class="form__addon">Inflación acumulada = </span>
+                    <span id="accumulatedInflation" class="form__results"></span>
+                </div>
+                <div class="form__line">
+                    <span class="form__addon">Promedio mensual = </span>
+                    <span id="averageMonthlyInflation" class="form__results"></span>
+                </div>
+                <div class="form__line">
+                    <span class="form__addon">Promedio anual = </span>
+                    <span id="averageYearlyInflation" class="form__results"></span>
+                </div>
+            </form>
+        </section>
+
+        <section class="container__section">
+            <h2 class="section__title title--principal">Comparar 2 precios ajustados por inflación</h2>
+            <p class="section__description">
+                Es crucial saber si un producto o servicio aumenta más o menos que la inflación. Cuando el aumento supera la inflación, el poder adquisitivo disminuye; si es menor, aumenta. Esto nos ayuda a entender cómo los cambios en los precios impactan nuestra capacidad de compra y a tomar decisiones financieras más informadas.
+            </p>
+            <h2 class="section__title">Uso</h2>
+            <ol class="section__list">
+                <li>Ingresar el primer valor a comparar y la fecha a la que pertenece</li>
+                <li>Ingresar el segundo valor a comparar y la fecha a la que pertenece.</li>
+            </ol>
+            <form class="section__form">
+                <div class="form__line">
+                    <div class="form__group">
+                        <span class="form__addon">$</span>
+                        <input type="number" class="form__input" step="0.01" min="0">
+                    </div>
+                    <div class="form__group">
+                        <span class="form__addon">en</span>
+                        <select class="form__select">
+                            <option value="enero">Enero</option>
+                            <option value="febrero">Febrero</option>
+                            <option value="marzo">Marzo</option>
+                            <option value="abril">Abril</option>
+                            <option value="mayo">Mayo</option>
+                            <option value="junio">Junio</option>
+                            <option value="julio">Julio</option>
+                            <option value="agosto">Agosto</option>
+                            <option value="septiembre">Septiembre</option>
+                            <option value="octubre">Octubre</option>
+                            <option value="noviembre">Noviembre</option>
+                            <option value="diciembre">Diciembre</option>
+                        </select>
+                        <span class="form__addon">de</span>
+                        <select class="form__select">
+                            <option value="1992">1992</option>
+                            <option value="1993">1993</option>
+                            <option value="1994">1994</option>
+                            <option value="1995">1995</option>
+                            <option value="1996">1996</option>
+                            <option value="1997">1997</option>
+                            <option value="1998">1998</option>
+                            <option value="1999">1999</option>
+                            <option value="2000">2000</option>
+                            <option value="2001">2001</option>
+                            <option value="2002">2002</option>
+                            <option value="2003">2003</option>
+                            <option value="2004">2004</option>
+                            <option value="2005">2005</option>
+                            <option value="2006">2006</option>
+                            <option value="2007">2007</option>
+                            <option value="2008">2008</option>
+                            <option value="2009">2009</option>
+                            <option value="2010">2010</option>
+                            <option value="2011">2011</option>
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form__line">
+                    <span class="form__addon">Comparado a</span>
+                </div>
+                <div class="form__line">
+                    <div class="form__group">
+                        <span class="form__addon">$</span>
+                        <input type="number" class="form__input" step="0.01" min="0">
+                    </div>
+                    <div class="form__group">
+                        <span class="form__addon">en</span>
+                        <select class="form__select">
+                            <option value="enero">Enero</option>
+                            <option value="febrero">Febrero</option>
+                            <option value="marzo">Marzo</option>
+                            <option value="abril">Abril</option>
+                            <option value="mayo">Mayo</option>
+                            <option value="junio">Junio</option>
+                            <option value="julio">Julio</option>
+                            <option value="agosto">Agosto</option>
+                            <option value="septiembre">Septiembre</option>
+                            <option value="octubre">Octubre</option>
+                            <option value="noviembre">Noviembre</option>
+                            <option value="diciembre">Diciembre</option>
+                        </select>
+                        <span class="form__addon">de</span>
+                        <select class="form__select">
+                            <option value="1992">1992</option>
+                            <option value="1993">1993</option>
+                            <option value="1994">1994</option>
+                            <option value="1995">1995</option>
+                            <option value="1996">1996</option>
+                            <option value="1997">1997</option>
+                            <option value="1998">1998</option>
+                            <option value="1999">1999</option>
+                            <option value="2000">2000</option>
+                            <option value="2001">2001</option>
+                            <option value="2002">2002</option>
+                            <option value="2003">2003</option>
+                            <option value="2004">2004</option>
+                            <option value="2005">2005</option>
+                            <option value="2006">2006</option>
+                            <option value="2007">2007</option>
+                            <option value="2008">2008</option>
+                            <option value="2009">2009</option>
+                            <option value="2010">2010</option>
+                            <option value="2011">2011</option>
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form__line">
+                    <span class="form__results">El primer valor ajustado por inflación a la fecha del segundo valor es igual a $ , lo que significa que tuvo una variación en términos reales de %</span>
+                </div>
+            </form>
+        </section>
+
+        <section class="container__section">
+            <h2 class="section__title">¿Qué es la Inflación?</h2>
+            <p class="section__description">
+                La inflación es el aumento generalizado y sostenido de los precios durante un determinado período de tiempo. Cuando los precios suben, la moneda en curso pierde valor y se adquieren menos bienes y servicios. Esto quiere decir que la inflación refleja la disminución del poder adquisitivo de la moneda.
+            </p>
+            <p class="section__description">
+                Los efectos de la inflación pueden ser positivos y negativos. Los efectos negativos de la inflación incluyen la disminución del valor de la moneda y el desaliento del ahorro e inversión debido a la incertidumbre sobre el valor futuro del dinero. Los efectos positivos de la inflación incluyen la posibilidad de los bancos centrales de ajustar las tasas de interés nominal con el propósito de mitigar una recesión y de fomentar la inversión en proyectos de capital no monetarios.
+            </p>
+            <h3 class="section__title">Fuente de datos</h3>
+            <p class="section__description">
+                La calculadora usa el índice de precios al consumidor (IPC) del INDEC y las cotizaciones históricas del dolar oficial y paralelo de <a href="http://dolarhistorico.com" target="_blank">dolarhistorico.com</a>.
+            </p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 Indicadores Económicos. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

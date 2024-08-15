@@ -1,0 +1,161 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f4f6;
+    color: #1f2937;
+}
+
+/* Estilos de la barra de navegación */
+.header {
+    background-color: #2563eb;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.navbar ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar__item {
+    margin-right: 1rem;
+}
+
+.navbar__link {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navbar__link:hover {
+    color: #bfdbfe;
+}
+
+/* Estilos del contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.container__section {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Estilos de los títulos */
+.section__title {
+    color: #1e40af;
+    margin-bottom: 1rem;
+}
+
+.title--principal {
+    font-size: 1.875rem;
+    font-weight: bold;
+}
+
+h2.section__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+h3.section__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Estilos de los párrafos */
+.section__description {
+    color: #4b5563;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+/* Estilos de las listas */
+.section__list {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #4b5563;
+}
+
+/* Estilos de los formularios */
+.section__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form__line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form__group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form__addon {
+    color: #4b5563;
+
+}
+
+.form__input,
+.form__select {
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.form__input:focus,
+.form__select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+.select--parameter {
+    padding: 0.5rem;
+}
+
+.form__results {
+    color: #2563eb;
+    font-weight: 600;
+}
+
+/* Estilos de los enlaces */
+a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos del pie de página */
+.footer {
+    background-color: #1f2937;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
